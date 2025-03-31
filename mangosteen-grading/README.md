@@ -11,7 +11,7 @@ The Mangosteen Grading System is an AI-based solution designed to measure the si
 🔄 Developing dataset collection strategy
 🔄 Prototyping initial detection models
 
-##🏆 Key Features
+## 🏆 Key Features
 - **Deep Learning for Object Detection:** Utilizes YOLO v11 to detect mangosteens in images.
 - **Size Calibration:** Uses the Hough Circle Transform to detect a reference circle (1 cm) and convert pixel measurements to real-world units.
 - **Automated Image Processing:** Processes images of mangosteens on a white background to compute their diameters.
