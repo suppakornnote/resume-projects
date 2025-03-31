@@ -25,12 +25,12 @@ The Mangosteen Grading System is an AI-based solution designed to measure the si
 - Matplotlib & NumPy (Data visualization and calculations)
 
 ## Next Steps
-- 🔹 Complete dataset collection (gather high-quality mangosteen images)
-- 🔹 Develop initial object detection model using YOLO v11
-- 🔹 Test different approaches for size calibration (Hough Transform vs. other methods)
-- 🔹 Evaluate initial prototype performance
+- Complete dataset collection (gather high-quality mangosteen images)
+- Develop initial object detection model using YOLO v11
+- Test different approaches for size calibration (Hough Transform vs. other methods)
+- Evaluate initial prototype performance
 
 ## 📊 Expected Outcomes
-- ✅ A robust mangosteen detection and grading system
-- ✅ Reduced manual grading errors
-- ✅ Optimized fruit grading workflow for the industry
+- A robust mangosteen detection and grading system
+- Reduced manual grading errors
+- Optimized fruit grading workflow for the industry
