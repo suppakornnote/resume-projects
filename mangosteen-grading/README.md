@@ -1,5 +1,5 @@
 #  Mangosteen Grading System
-(Automated Mangosteen Size Measurement using YOLO v11 and Hough Circle Transform)
+_(Automated Mangosteen Size Measurement using YOLO v11 and Hough Circle Transform)_
 
 ## 📌 Overview
 This project automates the grading of mangosteens based on size.  
