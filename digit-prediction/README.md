@@ -18,7 +18,7 @@ This project is a CNN-based image regression model that predicts numerical value
 
 ## 🚀 How to Run the Notebook
 1. Clone the repository:
-git clone https://github.com/suppakornnote/Predicting-Numerical-Values.git
+git clone https://github.com/suppakornnote/digit-prediction.git
 cd Predicting-Numerical-Values
 
 2. Open Jupyter Notebook (or Google Colab):
