@@ -22,7 +22,7 @@ This project implements a secure face authentication system using deep learning 
 - Finish.ipynb: Jupyter Notebook for implementing the trained model in the authentication system.
 
 ## Installation & Usage
-1. Clone this repository: git clone https://github.com/suppakornnote/face-authentication.git
+1. Clone this repository: git clone https://github.com/suppakornnote/Face_Authentication_System.git
 2. Set up the database: mysql -u root -p < face_auth_db.sql
 3. Train the model: jupyter notebook training.ipynb
 4. Implement the solution: jupyter notebook Finish.ipynb
