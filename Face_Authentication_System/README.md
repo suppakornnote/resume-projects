@@ -1,15 +1,17 @@
+# Face Authentication System (Secure Login with Facial Recognition)
+## 📌 Project Overview
+This project implements a secure face authentication system using deep learning and computer vision. It employs a CNN-based model for facial feature extraction and cosine similarity for verification.
 
-## 6. Conclusion
-This project successfully demonstrates a secure face authentication system using deep learning, OpenCV, and MySQL. By integrating facial recognition, password hashing, and SQL injection prevention, the system offers enhanced security over traditional authentication methods.
+## 🏆 Key Features
+- Deep Learning-based Face Recognition using TensorFlow/Keras.
+- Cosine Similarity for Identity Matching.
+- Secure Password Handling with bcrypt.
 
-## 7. Future Development & Suggestions
-- **Enhancing Model Accuracy**: Train the model on a larger and more diverse dataset.
-- **Multi-Device Authentication**: Enable authentication across various devices.
-- **Mobile App Integration**: Extend the system to a mobile platform.
-- **2-Factor Authentication (2FA)**: Implement an additional security layer.
-- **Live Detection Mechanism**: Add liveness detection to prevent spoofing attacks.
+## SQL Injection Prevention using prepared statements.
+- Real-time Face Detection using OpenCV.
 
----
-
-## 8. References
-- [Georgia Tech Face Database](http://www.face.ece.ucf.edu/databases/)
+## 🔧 Technologies Used
+- Python
+- TensorFlow/Keras
+- OpenCV (Face detection & preprocessing)
+- MySQL (User authentication storage)
