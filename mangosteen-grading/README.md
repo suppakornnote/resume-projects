@@ -1,4 +1,4 @@
-#  Mangosteen Grading System
+#  Mangosteen Grading System  (Phrase 1)
 _(Automated Mangosteen Size Measurement using YOLO v11 and Hough Circle Transform)_
 
 ## 📌 Project Overview
