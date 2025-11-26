@@ -3,7 +3,7 @@
 Welcome to my **GitHub Portfolio**! 🎉 Here, I showcase my **Machine Learning, Computer Vision, Web Development, and Security projects**, demonstrating my technical expertise and problem-solving skills.  
 
 ## 📌 **About Me**  
-I am a **third-year student at the Faculty of Information and Communication Technology (ICT), Mahidol University**, with a strong passion for **Artificial Intelligence, Image Processing, and Secure Systems**. My projects focus on real-world applications, from **AI-driven fruit grading** to **biometric authentication** and **full-stack web development**.  
+I am a **final year student at the Faculty of Information and Communication Technology (ICT), Mahidol University**, with a strong passion for **Artificial Intelligence, Image Processing, and Secure Systems**. My projects focus on real-world applications, from **AI-driven fruit grading** to **biometric authentication** and **full-stack web development**.  
 
 ## 📂 **Projects in This Repository**  
 
