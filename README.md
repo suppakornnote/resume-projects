@@ -21,12 +21,24 @@ I enjoy transforming data into **actionable insights** and building systems with
 ## 📂 Projects in This Repository
 
 ### 1️⃣ Mangosteen Grading System (Senior Project) 🥭  
-**Automated Mangosteen Grading using Computer Vision & Deep Learning**  
+**AI-Driven Automated Mangosteen Quality Assessment**  
 📅 **Duration**: Nov 2024 – Present  
+👨‍🏫 **Advisor**: Assoc. Prof. Dr. Worapan Kusakunniran  
 
-- Developed an **end-to-end computer vision system** for automated mangosteen grading.
-- Combined **object detection (YOLOv11)**, **image processing**, and **deep learning models** into a unified pipeline.
-- Focused on **size estimation** and **appearance-based classification** for agricultural quality assessment.
+- Designed and implemented an **AI-based framework for automated mangosteen grading** to improve objectivity and consistency in post-harvest quality control.
+- **Objective 1 (Completed)**: Developed an **image-based size estimation pipeline** using **YOLOv11 instance segmentation** to isolate the fruit body and calibrated reference sticker.  
+  - Applied **geometric approximation techniques** (circle fitting and direct perimeter calculation) to estimate **diameter and circumference**.  
+  - Classified mangosteens into **standardized size codes (1–5)**.
+- **Objective 2 (In Progress)**: Developing an **appearance-based classification system** using a **multi-view CNN architecture with expert-knowledge fusion**.  
+  - Analyzes **sticker-free multi-view images** (top, bottom, and four side views) to assess peel texture, blemishes, and color uniformity.  
+  - Outputs **commercial quality grades (A–D and unripe grade G)**.
+- **Objective 3 (In Progress)**: Integrating size codes and appearance grades to generate a **final unified quality label** (e.g., A1, B3, C4).
+- The proposed system provides a **scalable, standardized, and objective solution** for agricultural quality assessment, reducing human subjectivity in the tropical fruit supply chain.
+
+**Current Status**:  
+- ✅ Objective 1 completed  
+- 🔄 Objectives 2 & 3 under development  
+- 🗓 **Expected completion: May 2026**
 
 **Tools**: Python, YOLOv11, OpenCV, TensorFlow/Keras  
 
@@ -40,8 +52,7 @@ I enjoy transforming data into **actionable insights** and building systems with
 
 - Built a **secure biometric authentication system** using CNN-based facial feature extraction.
 - Used **cosine similarity** for identity verification.
-- Improved security with **bcrypt password hashing** and **prepared statements in MySQL**.
-- Integrated **OpenCV** for face detection and **TensorFlow/Keras** for model training.
+- Enhanced security with **bcrypt password hashing** and **prepared statements in MySQL**.
 
 **Tools**: Python, MySQL, OpenCV, TensorFlow/Keras  
 
@@ -49,31 +60,55 @@ I enjoy transforming data into **actionable insights** and building systems with
 
 ---
 
-### 3️⃣ Predicting Numerical Values from Handwritten Digit Images ✍️  
-**CNN-based Image Regression on MNIST Dataset**  
-📅 **Duration**: Sep 2024 – Oct 2024  
+### 3️⃣ EV Market Analysis & Business Intelligence ⚡  
+**Data Analytics & BI for Electric Vehicle Market Trends**
 
-- Developed a **CNN-based regression model** to predict numerical values from handwritten digit images.
-- Implemented preprocessing and training pipelines using **TensorFlow/Keras** and **OpenCV**.
-- Focused on model accuracy and robustness for non-classification tasks.
+- Analyzed **EV market trends, adoption patterns, and brand performance**.
+- Performed **EDA, KPI analysis, and trend visualization** to support business decision-making.
+- Built **interactive BI dashboards** to transform raw data into actionable insights.
 
-**Tools**: Python, TensorFlow/Keras, OpenCV, NumPy  
+**Tools**: Python, SQL, Tableau Desktop  
 
-📌 [View Project](https://github.com/suppakornnote/resume-projects/tree/main/digit-prediction)
+📌 [View Project](https://github.com/suppakornnote/resume-projects/tree/main/ev-market-analysis-bi)
 
 ---
 
-### 4️⃣ E-commerce Web Application 🛒  
-**Full-Stack Web Application for Computer Hardware Sales**  
-📅 **Duration**: Feb 2024 – Apr 2024  
+### 4️⃣ Data Warehousing for Business Intelligence 🏗  
+**OLTP to OLAP Design & BI Dashboard (Adidas Case Study)**  
 
-- Developed a **full-stack e-commerce platform** with authentication, product management, and order processing.
-- Implemented **MySQL database design**, backend APIs, and multilingual support.
-- Focused on system reliability and database-driven web architecture.
+- Designed and implemented a **data warehouse using star schema**.
+- Built **ETL pipelines** to transform transactional data into analytics-ready datasets.
+- Developed **BI dashboards** for sales, staff performance, and customer behavior analysis.
 
-**Tools**: Node.js, Express.js, MySQL, HTML, CSS, JavaScript  
+**Tools**: SQL, Tableau Prep, Tableau Desktop, Data Modeling  
 
-📌 [View Project](https://github.com/suppakornnote/resume-projects/tree/main/ecommerce-app)
+📌 [View Project](https://github.com/suppakornnote/resume-projects/tree/main/data-warehousing-bi)
+
+---
+
+### 5️⃣ End-to-End Database System Development 🍽  
+**Restaurant Management Database System**
+
+- Designed a complete **relational database system** from requirements to implementation.
+- Applied **ER modeling, normalization (3NF), and integrity constraints**.
+- Implemented a scalable transactional schema for real-world restaurant operations.
+
+**Tools**: MySQL, SQL, ER Modeling  
+
+📌 [View Project](https://github.com/suppakornnote/resume-projects/tree/main/end-to-end-database-system)
+
+---
+
+### 6️⃣ Data Indexing & Retrieval System 🔍  
+**Sanrio Character Search Engine (Prototype IR System)**  
+
+- Built a **search and retrieval system** using inverted indexing and relevance-based ranking.
+- Indexed structured data in **Elasticsearch** and served results via **Flask API**.
+- Supported keyword search, partial matching, and ranked results.
+
+**Tools**: Python, Elasticsearch, Flask, Kibana  
+
+📌 [View Project](https://github.com/suppakornnote/resume-projects/tree/main/data-indexing-retrieval-system)
 
 ---
 
@@ -113,5 +148,4 @@ I enjoy transforming data into **actionable insights** and building systems with
 ## 📫 Contact
 
 📧 Email: suppakornpoj@gmail.com  
-🔗 LinkedIn: https://www.linkedin.com/in/suppakorn-poj/  
-
+🔗 LinkedIn: https://www.linkedin.com/in/suppakorn-poj/
