@@ -1,36 +1,97 @@
-#  Mangosteen Grading System  (Phrase 1)
-_(Automated Mangosteen Size Measurement using YOLO v11 and Hough Circle Transform)_
+# 🥭 Mangosteen Grading System  
+**AI-Driven Automated Mangosteen Quality Assessment**
 
-## 📌 Project Overview
-The Mangosteen Grading System is an AI-based solution designed to measure the size of mangosteens automatically. It integrates YOLO v11 for fruit segmentation and the Hough Circle Transform to identify a reference object for accurate size calibration.
+This senior project proposes an **artificial intelligence–based framework** for automated mangosteen (Garcinia mangostana) grading, aiming to improve **objectivity, consistency, and efficiency** in post-harvest quality control for Thailand’s export industry.
 
-## 📅 Project Status: In Development (Planning Phase)
-- ✅ Defining project objectives and scope
-- ✅ Researching existing fruit grading systems
-- ✅ Choosing suitable deep learning models (YOLO v11) and image processing techniques (Hough Transform)
-- 🔄 Developing dataset collection strategy
-- 🔄 Prototyping initial detection models
+---
 
-## 🏆 Key Features
-- **Deep Learning for Object Detection:** Utilizes YOLO v11 to detect mangosteens in images.
-- **Size Calibration:** Uses the Hough Circle Transform to detect a reference circle (1 cm) and convert pixel measurements to real-world units.
-- **Automated Image Processing:** Processes images of mangosteens on a white background to compute their diameters.
-- **Optimized for Efficiency:** Reduces manual measurement errors and enhances the grading process.
+## 🎓 Project Information
 
-## 🔧 Technologies Used
-- Python
-- YOLO v11
-- OpenCV (Image processing & Hough Circle Transform)
-- Google Colab (GPU acceleration for training)
-- Matplotlib & NumPy (Data visualization and calculations)
+- **Program**: B.Sc. in Information and Communication Technology (International Program)  
+- **Institution**: Mahidol University  
+- **Advisor**: Assoc. Prof. Dr. Worapan Kusakunniran  
+- **Project Type**: Senior Project  
+- **Duration**: Nov 2024 – May 2026 (Expected)
 
-## Next Steps
-- Complete dataset collection (gather high-quality mangosteen images)
-- Develop initial object detection model using YOLO v11
-- Test different approaches for size calibration (Hough Transform vs. other methods)
-- Evaluate initial prototype performance
+---
 
-## 📊 Expected Outcomes
-- A robust mangosteen detection and grading system
-- Reduced manual grading errors
-- Optimized fruit grading workflow for the industry
+## 📌 Project Objectives
+
+The system is designed around **three integrated objectives**:
+
+### **Objective 1: Size Estimation (Completed ✅)**
+- Developed an **image-based size estimation pipeline** using **YOLOv11 instance segmentation**.
+- Accurately segments the **fruit body** and a **calibrated reference sticker**.
+- Applied **geometric approximation methods**:
+  - Circle fitting
+  - Direct perimeter calculation
+- Estimated **physical dimensions** (diameter and circumference).
+- Classified mangosteens into **standardized size codes (1–5)**.
+
+---
+
+### **Objective 2: Appearance-Based Classification (In Progress 🔄)**
+- Developing a **multi-view CNN architecture with expert-knowledge fusion**.
+- Uses **sticker-free multi-view images**:
+  - Top view
+  - Bottom view
+  - Four side views
+- Evaluates visual attributes such as:
+  - Peel texture
+  - Blemishes
+  - Color uniformity
+- Outputs **commercial quality grades**:
+  - A, B, C, D
+  - Unripe grade (G)
+
+---
+
+### **Objective 3: Final Quality Integration (In Progress 🔄)**
+- Integrates **size codes** and **appearance grades**.
+- Produces a unified final quality label  
+  *(e.g., A1, B3, C4)* for practical industrial use.
+
+---
+
+## 🧠 System Overview
+
+The proposed framework consists of:
+1. **Instance segmentation** for precise fruit and reference detection.
+2. **Geometric computation** for reliable physical size estimation.
+3. **Multi-view deep learning classification** for appearance assessment.
+4. **Decision-level fusion** for final quality grading.
+
+This design enables a **scalable and standardized grading pipeline** while significantly reducing human subjectivity.
+
+---
+
+## 🛠 Technologies Used
+
+- **Programming**: Python  
+- **Computer Vision**: OpenCV  
+- **Deep Learning**: TensorFlow / Keras  
+- **Object Detection & Segmentation**: YOLOv11  
+- **Data Processing & Visualization**: NumPy, Matplotlib  
+
+---
+
+## 📊 Current Status
+
+- ✅ Objective 1: Completed  
+- 🔄 Objective 2: In progress  
+- 🔄 Objective 3: In progress  
+- 🗓 **Expected completion**: May 2026  
+
+---
+
+## 🚀 Expected Impact
+
+- Provides a **reliable and objective mangosteen grading system**.
+- Enhances **operational efficiency** in post-harvest quality control.
+- Supports Thailand’s competitiveness in the **tropical fruit export market**.
+
+---
+
+## 📖 Keywords
+
+Mangosteen Grading · Computer Vision · Deep Learning · Instance Segmentation · YOLOv11 · Multi-View Classification · Automated Quality Control
