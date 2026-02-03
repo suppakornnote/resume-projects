@@ -25,7 +25,7 @@ My experience includes building **end-to-end data pipelines**, **database and BI
 - Uses **YOLOv11 instance segmentation** and **multi-view CNN-based classification**  
 - Designed to reduce subjectivity in agricultural quality control  
 
-📌 Folder: `mangosteen-grading`
+📌 Folder: [mangosteen-grading](./mangosteen-grading)
 
 ---
 
@@ -34,7 +34,7 @@ My experience includes building **end-to-end data pipelines**, **database and BI
 - CNN-based facial verification with **cosine similarity**
 - Enhanced security using **bcrypt hashing** and **prepared SQL statements**
 
-📌 Folder: `Face_Authentication_System`
+📌 Folder: [Face_Authentication_System](./Face_Authentication_System)
 
 ---
 
@@ -43,7 +43,7 @@ My experience includes building **end-to-end data pipelines**, **database and BI
 - EDA, KPI analysis, and **interactive dashboards**
 - Business-oriented insights for EV adoption and brand performance
 
-📌 Folder: `ev-market-analysis-bi`
+📌 Folder: [ev-market-analysis-bi](./ev-market-analysis-bi)
 
 ---
 
@@ -52,7 +52,7 @@ My experience includes building **end-to-end data pipelines**, **database and BI
 - Star schema design and ETL pipelines
 - BI dashboards for sales and performance analysis
 
-📌 Folder: `data-warehousing-bi`
+📌 Folder: [data-warehousing-bi](./data-warehousing-bi)
 
 ---
 
@@ -61,7 +61,7 @@ My experience includes building **end-to-end data pipelines**, **database and BI
 - Requirements analysis, ER modeling, normalization (3NF)
 - Transactional database implementation in MySQL
 
-📌 Folder: `end-to-end-database-system`
+📌 Folder: [end-to-end-database-system](./end-to-end-database-system)
 
 ---
 
@@ -70,8 +70,7 @@ My experience includes building **end-to-end data pipelines**, **database and BI
 - Inverted index and ranked retrieval
 - Elasticsearch backend with Flask API
 
-📌 Folder: `data-indexing-retrieval-system`
-
+📌 Folder: [data-indexing-retrieval-system](./data-indexing-retrieval-system)
 ---
 
 ## 🛠 Technical Skills
