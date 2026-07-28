@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Management - Hospital CRM System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #002147;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Styling for the main heading */
+        header h1 {
+            font-size: 3.5rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffcc00;
+        }
+
+        /* Styling for the subtitle */
+        header h4 {
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        /* Add a soft fade-in effect to the header */
+        header {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Navigation Menu Styling */
+        nav {
+            background-color: #c4a300;
+            position: relative;
+            width: 100%;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #335980;
+            color: white;
+        }
+
+        nav::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .content {
+            padding: 20px;
+            background-color: #f4f6f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            max-width: 2000px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .content:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .content h2 {
+            font-size: 2rem;
+            color: #003366;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            color: #555;
+        }
+
+        th {
+            background-color: #002147;
+            color: white;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        td {
+            background-color: #fafafa;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn {
+            background-color: #002147;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .form-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .form-container input,
+        .form-container select {
+            padding: 10px;
+            margin-right: 10px;
+            width: 200px;
+            display: block;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .edit-form {
+            display: none;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #loggedInAs {
+            font-size: 1rem;
+            color: rgb(255, 255, 255);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-weight: bold;
+            font-style: italic;
+            z-index: 999;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #002147;
+            color: white;
+            width: 100%;
+            margin-top: auto;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer .social-icons a {
+            color: white;
+            padding: 0 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .footer .social-icons a:hover {
+            color: #33a0ff;
+        }
+
+        .sign-out-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .sign-out-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="sign-out-btn" onclick="window.location.href='homepage.html'">Sign Out</button>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Hospital CRM System</h1>
+        <h4>A comprehensive system for hospital management</h4>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="homepage.html">Home</a>
+        <a href="teampage.html">Our Team</a>
+    </nav>
+
+    <!-- Back to Dashboard Button Below Nav -->
+    <div style="margin-top: 20px; margin-left: 20px;">
+        <a id="backToDashboardButton" href="patient_dashboard.html"
+            style="background-color: #33a0ff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Back to Dashboard
+        </a>
+    </div>
+
+    <!-- Display Logged-in As Username at the Top Left -->
+    <div id="loggedInAs"></div>
+
+    <div class="content">
+        <h2>Appointment Management</h2>
+        <div class="form-container">
+            <!-- Button to Book Appointment Page -->
+            <a href="appointment.html" class="btn" id="createAppointmentButton">Create New Appointment</a>
+        </div>
+        <h3>Appointment List</h3>
+        <table id="appointmentTable">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Doctor Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                <!-- <td>pingpong</td>
+                <td>Dr. John</td>
+                <td>2024-11-01</td>
+                <td>10.30</td>
+                <td>I need to discuss my cholesterol levels and preventive care for heart health.</td>
+                <td>Approved</td>
+                <td>
+                    <button class="btn" onclick="editAppointment(${index})"><i class="fas fa-pen"></i></button>
+                    <button class="btn" onclick="deleteAppointment(${index})"><i class="fas fa-trash"></i></button>
+                </td> -->
+            </thead>
+            <tbody>
+                <!-- Appointment data rows will be inserted here -->
+            </tbody>
+        </table>
+        <!-- Edit Form (hidden initially) -->
+        <div class="edit-form" id="editForm">
+            <h3>Edit Appointment</h3>
+            <form id="editAppointmentForm">
+
+
+                <label for="editDoctorName">Doctor Name</label>
+                <select id="editDoctorName" required>
+                    <option value="Dr. Saeng">Dr. Saeng (Cardiology)</option>
+                    <option value="Dr. Ping">Dr. Ping (Neurology)</option>
+                    <option value="Dr. Art">Dr. Art (Orthopedics)</option>
+                    <option value="Dr. Nai">Dr. Nai (General Practitioner)</option>
+                </select>
+
+                <label for="editDate">Date</label>
+                <input type="date" id="editDate" required>
+
+                <label for="editTime">Time</label>
+                <input type="time" id="editTime" required>
+
+                <label for="editReason">Reason</label>
+                <input type="text" id="editReason" required>
+
+                <button type="submit" class="btn">Save Changes</button>
+                <button type="button" class="btn" onclick="cancelEdit()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>© 2024 Hospital CRM System. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/NuntapopZ"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/__noteee/"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // Get username from the URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+
+        // Display the logged-in username at the top left of the page
+        if (username) {
+            document.getElementById('loggedInAs').innerText = 'Logged in as: ' + username;
+            // Pass the username to appointment.html link
+            document.getElementById('createAppointmentButton').href = 'appointment.html?username=' + username;
+        }
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const exampleAppointments = [
+                { username: "notesuppakorn", doctorName: "Dr. Saeng", dateTime: "2024-11-15T10:00", reason: "Checkup", status: "Approved" },
+                { username: "notesuppakorn", doctorName: "Dr. Ping", dateTime: "2024-11-16T14:00", reason: "Consultation", status: "Approved" }
+            ];
+
+            if (!localStorage.getItem("appointments")) {
+                localStorage.setItem("appointments", JSON.stringify(exampleAppointments));
+            }
+            console.log("Appointments initialized:", localStorage.getItem("appointments"));
+
+            renderAppointmentTable();
+        });
+
+
+
+        // Function to render the appointment table
+        let editIndex = -1; // Store the index of the appointment being edited
+
+        // Function to render the appointment table
+        function renderAppointmentTable() {
+            const tableBody = document.getElementById("appointmentTable").getElementsByTagName("tbody")[0];
+            tableBody.innerHTML = ""; // Clear existing rows
+
+            const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+            console.log("Rendering appointments:", appointments);
+
+            appointments.forEach((appointment, index) => {
+                const [date, time] = appointment.dateTime.split("T");
+                const row = tableBody.insertRow();
+                row.innerHTML = `
+            <td>${appointment.username}</td>
+            <td>${appointment.doctorName}</td>
+            <td>${date}</td>
+            <td>${time}</td>
+            <td>${appointment.reason || "General Consultation"}</td>
+            <td>${appointment.status || "Pending"}</td>
+            <td>
+                <button class="btn" onclick="editAppointment(${index})"><i class="fas fa-pen"></i></button>
+                <button class="btn" onclick="deleteAppointment(${index})"><i class="fas fa-trash"></i></button>
+            </td>
+        `;
+            });
+
+            console.log("Table rendered successfully");
+        }
+
+
+        function editAppointment(index) {
+            const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+            const appointment = appointments[index];
+
+            // Set form values
+
+            document.getElementById("editDoctorName").value = appointment.doctorName;
+            document.getElementById("editDate").value = appointment.dateTime.split("T")[0];
+            document.getElementById("editTime").value = appointment.dateTime.split("T")[1];
+            document.getElementById("editReason").value = appointment.reason;
+
+            // Show the edit form
+            document.getElementById("editForm").style.display = "block";
+            editIndex = index; // Save the index of the appointment being edited
+        }
+
+        function showConfirmationMessage(message) {
+            // Create a div for the confirmation message
+            const confirmationMessage = document.createElement('div');
+            confirmationMessage.textContent = message;
+            confirmationMessage.style.position = 'fixed';
+            confirmationMessage.style.bottom = '20px';
+            confirmationMessage.style.right = '20px';
+            confirmationMessage.style.padding = '15px 25px';
+            confirmationMessage.style.backgroundColor = '#4caf50'; // Green background
+            confirmationMessage.style.color = '#fff'; // White text
+            confirmationMessage.style.borderRadius = '5px';
+            confirmationMessage.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.2)';
+            confirmationMessage.style.fontSize = '1rem';
+            confirmationMessage.style.zIndex = '1000';
+
+            // Add the confirmation message to the body
+            document.body.appendChild(confirmationMessage);
+
+            // Automatically remove the message after 3 seconds
+            setTimeout(() => {
+                confirmationMessage.remove();
+            }, 3000);
+        }
+
+        // Handle form submission to save changes
+        document.getElementById("editAppointmentForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+            const appointment = appointments[editIndex];
+
+            // Update appointment details
+
+            appointment.doctorName = document.getElementById("editDoctorName").value;
+            appointment.dateTime = `${document.getElementById("editDate").value}T${document.getElementById("editTime").value}`;
+            appointment.reason = document.getElementById("editReason").value; // Update reason
+
+            // Save the updated appointments back to localStorage
+            localStorage.setItem("appointments", JSON.stringify(appointments));
+
+            // Hide the edit form and re-render the table
+            document.getElementById("editForm").style.display = "none";
+            renderAppointmentTable();
+
+            // Show the styled confirmation message
+            showConfirmationMessage("System record updated correctly with new details.");
+        });
+
+        // Function to delete an appointment
+        function deleteAppointment(index) {
+            let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+            appointments.splice(index, 1);
+            localStorage.setItem("appointments", JSON.stringify(appointments));
+            renderAppointmentTable();
+
+            showConfirmationMessage('Appointment deleted successfully.');
+
+        }
+
+        function cancelEdit() {
+            document.getElementById("editForm").style.display = "none";
+        }
+        // Initial render of the appointment table
+        renderAppointmentTable();
+
+        // Append username to the Back to Dashboard button link
+        const backToDashboardButton = document.getElementById('backToDashboardButton');
+        if (username) {
+            backToDashboardButton.href = 'patient_dashboard.html?username=' + username;
+        }
+    </script>
+
+</body>
+
+</html>

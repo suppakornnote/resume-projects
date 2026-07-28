@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - Hospital CRM System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #002147;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Styling for the Sign Out Button at the Top-Right Corner */
+        .sign-out-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #e74c3c;
+            /* Red background */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .sign-out-btn:hover {
+            background-color: #c0392b;
+            /* Darker red on hover */
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #002147;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Styling for the main heading */
+        header h1 {
+            font-size: 3.5rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffcc00;
+        }
+
+        /* Styling for the subtitle */
+        header h4 {
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        /* Add a soft fade-in effect to the header */
+        header {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+         /* Navigation Menu Styling */
+         nav {
+            background-color: #c4a300;
+            /* overflow: hidden; */
+            position: relative;
+            width: 100%;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #335980;
+            color: white;
+        }
+
+        nav::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Main content area */
+        .main-content {
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Title Styling */
+        .title {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title h1 {
+            font-size: 2rem;
+            color: #002147;
+            margin: 0;
+        }
+
+        /* Mode Cards Styling */
+        .mode-card {
+            width: 250px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            margin: 20px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .mode-card h2 {
+            font-size: 1.5rem;
+        }
+
+        .mode-card p {
+            color: #666;
+        }
+
+        /* Logged-in As Display */
+        #loggedInAs {
+            font-size: 1rem;
+            color: rgb(255, 255, 255);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #002147;
+            color: white;
+            width: 100%;
+            margin-top: auto;
+            /* Pushes the footer to the bottom */
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer .social-icons a {
+            color: white;
+            padding: 0 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .footer .social-icons a:hover {
+            color: #33a0ff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="sign-out-btn" onclick="window.location.href='homepage.html'">Sign Out</button>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Hospital CRM System</h1>
+        <h4>A comprehensive system for hospital management</h4>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="homepage.html">Home</a>
+        <a href="teampage.html">Our Team</a>
+    </nav>
+
+    <!-- Display Logged-in As Username at the Top Left -->
+    <div id="loggedInAs"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Patient Dashboard Title -->
+        <div class="title">
+            <h1>Patient Dashboard</h1>
+        </div>
+
+        <!-- Appointment Management Card -->
+        <div class="mode-card" onclick="window.location.href='Appointment_manage.html?username=' + username">
+            <h2>Appointment Management</h2>
+            <p>Book, view, and manage your appointments with doctors.</p>
+        </div>
+
+        <!-- Account Management Card -->
+        <div class="mode-card" onclick="window.location.href='account_management.html?username=' + username">
+            <h2>Account Management</h2>
+            <p>Manage your personal details, medical records, and settings.</p>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 Hospital CRM System. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // Get username from the URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+
+        // Display the logged-in username at the top left of the body
+        if (username) {
+            document.getElementById('loggedInAs').innerText = 'Logged in as: ' + username;
+        }
+    </script>
+
+</body>
+
+</html>

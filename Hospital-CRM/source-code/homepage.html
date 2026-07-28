@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital CRM System - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styling */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #002147;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #002147;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Styling for the main heading */
+        header h1 {
+            font-size: 3.5rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffcc00;
+        }
+
+        /* Styling for the subtitle */
+        header h4 {
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+    
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+         /* Navigation Menu Styling */
+         nav {
+            background-color: #c4a300;
+            /* overflow: hidden; */
+            position: relative;
+            width: 100%;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #335980;
+            color: white;
+        }
+
+        nav::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+        .dropdown .dropdown-btn {
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #002147;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #335980;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Container and Mode Cards Styling */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 110px;
+            padding-top: 110px;
+            flex: 1;
+            /* Allows the container to expand and push the footer down */
+        }
+
+        .mode-selection {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .mode-card {
+            width: 220px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            color: #002147;
+            border: 1px solid #002147;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mode-card h2 {
+            margin-top: 10px;
+            font-size: 1.5rem;
+        }
+
+        .mode-card p {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .mode-card i {
+            font-size: 2rem;
+            color: #002147;
+        }
+
+        /* Footer Styling */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #002147;
+            color: white;
+            width: 100%;
+            margin-top: auto;
+            /* Pushes the footer to the bottom */
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer .social-icons a {
+            color: white;
+            padding: 0 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .footer .social-icons a:hover {
+            color: #33a0ff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Hospital CRM System</h1>
+        <h4>A comprehensive system for hospital management</h4>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <a href="homepage.html">Home</a>
+        <a href="teampage.html">Our Team</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="mode-selection">
+            <!-- Patient Mode Card -->
+            <div class="mode-card" onclick="redirectTo('patient')">
+                <i class="fas fa-user-injured"></i>
+                <h2>Patient Mode</h2>
+                <p>Book appointments, view medical records, and communicate with doctors.</p>
+            </div>
+
+            <!-- Doctor Mode Card -->
+            <div class="mode-card" onclick="redirectTo('doctor')">
+                <i class="fas fa-user-md"></i>
+                <h2>Doctor Mode</h2>
+                <p>Access patient records, manage schedules, and update treatment plans.</p>
+            </div>
+
+            <!-- Admin Mode Card -->
+            <div class="mode-card" onclick="redirectTo('admin')">
+                <i class="fas fa-user-shield"></i>
+                <h2>Admin Mode</h2>
+                <p>Manage users, oversee system settings, and generate reports.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 Hospital CRM System. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // Function to store selected mode and redirect to login page
+        function redirectTo(mode) {
+            // Store the selected mode in session storage
+            sessionStorage.setItem('selectedMode', mode);
+
+            // Redirect to login page
+            window.location.href = 'login.html';
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Prescription - Hospital CRM System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #002147;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Styling for the main heading */
+        header h1 {
+            font-size: 3.5rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffcc00;
+        }
+
+        /* Styling for the subtitle */
+        header h4 {
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        /* Add a soft fade-in effect to the header */
+        header {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Navigation Menu Styling */
+        nav {
+            background-color: #c4a300;
+            /* overflow: hidden; */
+            position: relative;
+            width: 100%;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #335980;
+            color: white;
+        }
+
+        nav::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Form Section Styling */
+        .form-container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            color: #002147;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #00409d;
+        }
+
+        /* Table Styling */
+        table {
+            width: 80%;
+            margin: 40px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #002147;
+            color: white;
+        }
+
+        td button {
+            background-color: #f4f4f9;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            padding: 5px;
+        }
+
+        td button:hover {
+            background-color: #ddd;
+        }
+
+        td i {
+            font-size: 1.2rem;
+            color: #002147;
+        }
+
+        /* Modal Styling */
+        /* Modal Styling */
+        .modal {
+            display: none;
+            /* This hides the modal by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: auto;
+            /* This is the one that centers the modal */
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /* Modal Content Styling */
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .modal input,
+        .modal select,
+        .modal textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .modal button {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .modal button:hover {
+            background-color: #00409d;
+        }
+
+        .close {
+            background-color: red;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .close:hover {
+            background-color: #cc0000;
+        }
+
+        /* Footer Styling */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #002147;
+            color: white;
+            width: 100%;
+            margin-top: auto;
+            /* Pushes the footer to the bottom */
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer .social-icons a {
+            color: white;
+            padding: 0 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .footer .social-icons a:hover {
+            color: #33a0ff;
+        }
+
+        /* Styling for the Sign Out Button */
+        .sign-out-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #e74c3c;
+            /* Red background */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .sign-out-btn:hover {
+            background-color: #c0392b;
+            /* Darker red on hover */
+        }
+
+        /* Logged-in As Display */
+        #loggedInAs {
+            font-size: 1rem;
+            color: rgb(255, 255, 255);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-weight: bold;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="sign-out-btn" onclick="window.location.href='homepage.html'">Sign Out</button>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Hospital CRM System</h1>
+        <h4>A comprehensive system for hospital management</h4>
+    </header>
+
+    <!-- Display Logged-in As Username at the Top Left -->
+    <div id="loggedInAs"></div>
+
+    <div style="text-align: left; margin: 20px;">
+        <button onclick="redirectToDashboard()"
+            style="background-color: #33a0ff; color: white; padding: 10px 20px; font-size: 1.1rem; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+            Back to Dashboard
+        </button>
+    </div>
+
+
+    <!-- Prescription Form -->
+    <div class="form-container">
+        <h2>Issue Prescription</h2>
+        <form id="prescriptionForm">
+            <!-- Patient Selection -->
+            <label for="patient">Select Patient</label>
+            <select id="patient" name="patient" required>
+                <option value="Note Suppakorn">Note Suppakorn</option>
+                <option value="Jane Smith">Jane Smith</option>
+                <option value="Mike Johnson">Mike Johnson</option>
+            </select>
+
+            <!-- Medication Name -->
+            <label for="medication">Medication Name</label>
+            <input type="text" id="medication" name="medication" required placeholder="Enter medication name">
+
+            <!-- Dosage -->
+            <label for="dosage">Dosage</label>
+            <input type="text" id="dosage" name="dosage" required placeholder="Enter dosage details (e.g., 500mg)">
+
+            <!-- Frequency -->
+            <label for="frequency">Frequency of Medication</label>
+            <select id="frequency" name="frequency" required onchange="checkOtherFrequency()">
+                <option value="">Select a frequency</option>
+                <option value="onceADay">Once a day</option>
+                <option value="twiceADay">Twice a day (morning and evening)</option>
+                <option value="threeTimesADay">Three times a day (morning, afternoon, and evening)</option>
+                <option value="everySixHours">Every 6 hours</option>
+                <option value="asNeeded">As needed</option>
+                <option value="other">Other</option>
+            </select>
+
+            <!-- Special Instructions -->
+            <label for="instructions">Special Instructions</label>
+            <textarea id="instructions" name="instructions"
+                placeholder="Enter any special instructions here"></textarea>
+
+            <!-- Submit Button -->
+            <button type="submit">Issue Prescription</button>
+        </form>
+    </div>
+
+    <!-- Prescription Table -->
+    <table id="prescriptionTable">
+        <thead>
+            <tr>
+                <th>Patient</th>
+                <th>Medication</th>
+                <th>Dosage</th>
+                <th>Frequency</th>
+                <th>Instructions</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be added dynamically here -->
+        </tbody>
+    </table>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 Hospital CRM System. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <!-- Edit Prescription Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Prescription</h2>
+            <form id="editForm">
+                <label for="editPatient">Patient</label>
+                <!-- Change the select to input field and make it readonly -->
+                <input type="text" id="editPatient" name="patient" readonly>
+
+                <label for="editMedication">Medication Name</label>
+                <input type="text" id="editMedication" name="medication" required>
+
+                <label for="editDosage">Dosage</label>
+                <input type="text" id="editDosage" name="dosage" required>
+
+                <label for="editFrequency">Frequency</label>
+                <select id="editFrequency" name="frequency" required>
+                    <option value="onceADay">Once a day</option>
+                    <option value="twiceADay">Twice a day (morning and evening)</option>
+                    <option value="threeTimesADay">Three times a day</option>
+                    <option value="everySixHours">Every 6 hours</option>
+                    <option value="asNeeded">As needed</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="editInstructions">Special Instructions</label>
+                <textarea id="editInstructions" name="instructions"></textarea>
+
+                <button type="submit">Save Changes</button>
+                <button type="button" class="close">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // Extract 'username' from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+
+        // Display the logged-in username
+        if (username) {
+            document.getElementById('loggedInAs').innerText = `Logged in as: ${username}`;
+        }
+
+        // Redirect function for Back to Dashboard
+        function redirectToDashboard() {
+            if (username) {
+                window.location.href = `doctor_dashboard.html?username=${username}`;
+            } else {
+                alert('Username not found in the URL.');
+            }
+        }
+
+        // Adding new prescription row to table
+        document.getElementById('prescriptionForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const patient = document.getElementById('patient').value;
+            const medication = document.getElementById('medication').value;
+            const dosage = document.getElementById('dosage').value;
+            const frequency = document.getElementById('frequency').value;
+            const instructions = document.getElementById('instructions').value;
+
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${patient}</td>
+                <td>${medication}</td>
+                <td>${dosage}</td>
+                <td>${frequency}</td>
+                <td>${instructions}</td>
+                <td>
+                    <button class="edit-btn"><i class="fas fa-pen"></i></button>
+                    <button class="delete-btn"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+
+            document.querySelector('#prescriptionTable tbody').appendChild(newRow);
+
+            // Clear the form
+            document.getElementById('prescriptionForm').reset();
+            showConfirmationMessage('Prescription added successfully.');
+
+        });
+
+
+        // Function to show confirmation message
+        function showConfirmationMessage(message) {
+            // Create a div for the confirmation message
+            const confirmationMessage = document.createElement('div');
+            confirmationMessage.textContent = message;
+            confirmationMessage.style.position = 'fixed';
+            confirmationMessage.style.bottom = '20px';
+            confirmationMessage.style.right = '20px';
+            confirmationMessage.style.padding = '15px 25px';
+            confirmationMessage.style.backgroundColor = '#4caf50'; // Green background
+            confirmationMessage.style.color = '#fff'; // White text
+            confirmationMessage.style.borderRadius = '5px';
+            confirmationMessage.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.2)';
+            confirmationMessage.style.fontSize = '1rem';
+            confirmationMessage.style.zIndex = '1000';
+
+            // Add the confirmation message to the body
+            document.body.appendChild(confirmationMessage);
+
+            // Automatically remove the message after 3 seconds
+            setTimeout(() => {
+                confirmationMessage.remove();
+            }, 3000);
+        }
+        // Edit Button Click Event
+        document.querySelector('#prescriptionTable').addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('edit-btn')) {
+                const row = e.target.closest('tr');
+                const cells = row.getElementsByTagName('td');
+
+                // Open the modal and populate data
+                document.getElementById('editPatient').value = cells[0].innerText; // Populate patient name
+
+                document.getElementById('editMedication').value = cells[1].innerText;
+                document.getElementById('editDosage').value = cells[2].innerText;
+                document.getElementById('editFrequency').value = cells[3].innerText;
+                document.getElementById('editInstructions').value = cells[4].innerText;
+
+                // Display the modal
+                document.getElementById('editModal').style.display = 'flex'; // Show the modal with flexbox
+
+                // Save Changes in Table
+                document.getElementById('editForm').onsubmit = function (e) {
+                    e.preventDefault();
+
+                    cells[0].innerText = document.getElementById('editPatient').value; // Update the patient column
+                    cells[1].innerText = document.getElementById('editMedication').value;
+                    cells[2].innerText = document.getElementById('editDosage').value;
+                    cells[3].innerText = document.getElementById('editFrequency').value;
+                    cells[4].innerText = document.getElementById('editInstructions').value;
+
+                    document.getElementById('editModal').style.display = 'none'; // Close the modal
+
+                    // Show confirmation message
+                    showConfirmationMessage('Details updated successfully.');
+                };
+            }
+        });
+
+
+
+        // Close Modal
+        document.querySelector('.close').addEventListener('click', function () {
+            document.getElementById('editModal').style.display = 'none'; // Hide the modal when cancel button is clicked
+        });
+
+
+
+        // Delete Button Click Event
+        document.querySelector('#prescriptionTable').addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('delete-btn')) {
+                const row = e.target.closest('tr');
+                row.remove();
+                showConfirmationMessage('Prescription deleted successfully.');
+
+
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

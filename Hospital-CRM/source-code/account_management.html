@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Make sure the body and html are 100% height */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #002147;
+        }
+
+        header {
+            background-color: #002147;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Styling for the main heading */
+        header h1 {
+            font-size: 3.5rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffcc00;
+        }
+
+        /* Styling for the subtitle */
+        header h4 {
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #002147;
+            color: white;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer .social-icons a {
+            color: white;
+            padding: 0 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .footer .social-icons a:hover {
+            color: #33a0ff;
+        }
+
+        .account-info {
+            margin: 20px auto;
+            padding: 30px;
+            max-width: 700px;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            background-color: #e8f4ff;
+            /* Light blue background for a clean look */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            /* Subtle shadow */
+        }
+
+        .account-info h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #002147;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .account-info h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #ffcc00;
+            margin: 10px auto 0;
+        }
+
+        .account-info p {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .account-info p strong {
+            color: #002147;
+        }
+
+        .account-info span {
+            font-style: italic;
+            color: #555;
+        }
+
+        .account-info i {
+            color: #33a0ff;
+            margin-right: 10px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .buttons a {
+            padding: 12px 25px;
+            font-size: 1rem;
+            background-color: #33a0ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 0 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .buttons a:hover {
+            background-color: #0288d1;
+            transform: translateY(-3px);
+        }
+
+        .buttons a:active {
+            background-color: #005f9e;
+            transform: translateY(1px);
+        }
+
+        /* For responsiveness */
+        @media (max-width: 768px) {
+            .account-info {
+                padding: 20px;
+            }
+
+            .buttons a {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+            }
+        }
+
+        /* Styling for the Sign Out Button at the Top-Right Corner */
+        .sign-out-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #e74c3c;
+            /* Red background */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .sign-out-btn:hover {
+            background-color: #c0392b;
+            /* Darker red on hover */
+        }
+
+        /* Logged-in As Display */
+        #loggedInAs {
+            font-size: 1rem;
+            color: rgb(255, 255, 255);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        /* Dark background overlay for modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        /* Modal container */
+        .modal {
+            background: #ffffff;
+            width: 50%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        .modal h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #002147;
+        }
+
+        .modal .form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal label {
+            display: block;
+            font-weight: bold;
+            color: #002147;
+            margin-bottom: 5px;
+        }
+
+        .modal input,
+        .modal select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .modal .modal-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .modal-buttons button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-buttons .save-btn {
+            background-color: #33a0ff;
+            color: white;
+        }
+
+        .modal-buttons .save-btn:hover {
+            background-color: #0288d1;
+        }
+
+        .modal-buttons .cancel-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        .modal-buttons .cancel-btn:hover {
+            background-color: #d11a1a;
+        }
+
+        /* Footer Styling */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #002147;
+            color: white;
+            width: 100%;
+            margin-top: auto;
+            /* Pushes the footer to the bottom */
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer .social-icons a {
+            color: white;
+            padding: 0 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .footer .social-icons a:hover {
+            color: #33a0ff;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="sign-out-btn" onclick="window.location.href='homepage.html'">Sign Out</button>
+
+    <header>
+        <h1>Hospital CRM System</h1>
+        <h4>A comprehensive system for hospital management</h4>
+    </header>
+
+    <!-- Display Logged-in As Username at the Top Left -->
+    <div id="loggedInAs"></div>
+
+    <div class="account-info">
+        <h2>Account Information</h2>
+        <p><i class="fas fa-user"></i> <strong>Username:</strong> <span id="username">notesuppakorn</span></p>
+        <p><i class="fas fa-key"></i> <strong>Password:</strong> <span id="password">********</span></p>
+        <p><i class="fas fa-id-badge"></i> <strong>First Name:</strong> <span id="first-name">Note</span></p>
+        <p><i class="fas fa-id-badge"></i> <strong>Last Name:</strong> <span id="last-name">Suppakorn</span></p>
+        <p><i class="fas fa-id-card"></i> <strong>Citizen ID:</strong> <span id="citizen-id">123456789</span></p>
+        <p><i class="fas fa-venus-mars"></i> <strong>Gender:</strong> <span id="gender">Male</span></p>
+        <p><i class="fas fa-phone"></i> <strong>Phone Number:</strong> <span id="phone-number">+1234567890</span></p>
+        <p><i class="fas fa-calendar-alt"></i> <strong>Date of Birth:</strong> <span id="dob">1990-01-01</span></p>
+        <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> <span id="address">123 Main St, City</span>
+        </p>
+        <p><i class="fas fa-tint"></i> <strong>Blood Group:</strong> <span id="blood-group">O+</span></p>
+        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <span id="email">notesup@example.com</span></p>
+        <p><i class="fas fa-cogs"></i> <strong>Age:</strong> <span id="age">34</span></p>
+
+        <div class="buttons">
+            <a href="patient_dashboard.html?username=notesuppakorn" id="backBtn">Back to Patient Dashboard</a>
+            <a href="#" id="editInfoBtn">Edit Information</a>
+        </div>
+    </div>
+
+    <!-- Modal for editing account -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal">
+            <h3>Edit Account Information</h3>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editFirstName">First Name</label>
+                    <input type="text" id="editFirstName">
+                </div>
+                <div class="form-group">
+                    <label for="editLastName">Last Name</label>
+                    <input type="text" id="editLastName">
+                </div>
+                <div class="form-group">
+                    <label for="editCitizenID">Citizen ID</label>
+                    <input type="text" id="editCitizenID">
+                </div>
+                <div class="form-group">
+                    <label for="editGender">Gender</label>
+                    <select id="editGender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editPhoneNumber">Phone Number</label>
+                    <input type="text" id="editPhoneNumber">
+                </div>
+                <div class="form-group">
+                    <label for="editDOB">Date of Birth</label>
+                    <input type="date" id="editDOB">
+                </div>
+                <div class="form-group">
+                    <label for="editAddress">Address</label>
+                    <input type="text" id="editAddress">
+                </div>
+                <div class="form-group">
+                    <label for="editBloodGroup">Blood Group</label>
+                    <input type="text" id="editBloodGroup">
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail">
+                </div>
+                <div class="form-group">
+                    <label for="editAge">Age</label>
+                    <input type="number" id="editAge">
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="save-btn" id="saveChanges">Save Changes</button>
+                    <button type="button" class="cancel-btn" id="cancelChanges">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 Hospital CRM System. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // Display logged-in user information at the top
+        document.getElementById('loggedInAs').textContent = 'Logged in as: notesuppakorn';
+
+        // Show the modal when clicking "Edit Information"
+        const editButton = document.getElementById('editInfoBtn');
+        const modal = document.getElementById('editModal');
+        const cancelButton = document.getElementById('cancelChanges');
+        const saveButton = document.getElementById('saveChanges');
+
+        editButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+            populateModalFields();
+        });
+
+        // Close modal when clicking "Cancel"
+        cancelButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Populate modal fields with current account info
+        function populateModalFields() {
+            document.getElementById('editFirstName').value = document.getElementById('first-name').textContent;
+            document.getElementById('editLastName').value = document.getElementById('last-name').textContent;
+            document.getElementById('editCitizenID').value = document.getElementById('citizen-id').textContent;
+            document.getElementById('editGender').value = document.getElementById('gender').textContent;
+            document.getElementById('editPhoneNumber').value = document.getElementById('phone-number').textContent;
+            document.getElementById('editDOB').value = document.getElementById('dob').textContent;
+            document.getElementById('editAddress').value = document.getElementById('address').textContent;
+            document.getElementById('editBloodGroup').value = document.getElementById('blood-group').textContent;
+            document.getElementById('editEmail').value = document.getElementById('email').textContent;
+            document.getElementById('editAge').value = document.getElementById('age').textContent;
+        }
+
+        // Create a function to show the confirmation message
+        function showConfirmationMessage(message) {
+            // Create a div for the confirmation message
+            const confirmationMessage = document.createElement('div');
+            confirmationMessage.textContent = message;
+            confirmationMessage.style.position = 'fixed';
+            confirmationMessage.style.bottom = '20px';
+            confirmationMessage.style.right = '20px';
+            confirmationMessage.style.padding = '15px 25px';
+            confirmationMessage.style.backgroundColor = '#4caf50'; // Green background
+            confirmationMessage.style.color = '#fff'; // White text
+            confirmationMessage.style.borderRadius = '5px';
+            confirmationMessage.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.2)';
+            confirmationMessage.style.fontSize = '1rem';
+            confirmationMessage.style.zIndex = '1000';
+
+            // Add the confirmation message to the body
+            document.body.appendChild(confirmationMessage);
+
+            // Automatically remove the message after 3 seconds
+            setTimeout(() => {
+                confirmationMessage.remove();
+            }, 3000);
+        }
+
+        // Save changes when clicking "Save Changes"
+        saveButton.addEventListener('click', () => {
+            document.getElementById('first-name').textContent = document.getElementById('editFirstName').value;
+            document.getElementById('last-name').textContent = document.getElementById('editLastName').value;
+            document.getElementById('citizen-id').textContent = document.getElementById('editCitizenID').value;
+            document.getElementById('gender').textContent = document.getElementById('editGender').value;
+            document.getElementById('phone-number').textContent = document.getElementById('editPhoneNumber').value;
+            document.getElementById('dob').textContent = document.getElementById('editDOB').value;
+            document.getElementById('address').textContent = document.getElementById('editAddress').value;
+            document.getElementById('blood-group').textContent = document.getElementById('editBloodGroup').value;
+            document.getElementById('email').textContent = document.getElementById('editEmail').value;
+            document.getElementById('age').textContent = document.getElementById('editAge').value;
+            modal.style.display = 'none';
+
+            // Show the confirmation message
+            showConfirmationMessage('Details updated successfully.');
+        });
+    </script>
+</body>
+
+</html>
